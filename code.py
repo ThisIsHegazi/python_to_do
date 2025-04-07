@@ -2,7 +2,6 @@ all_tasks_file = open("all_tasks.txt", "r")
 all_tasks = [i for i in all_tasks_file.readlines() if i]
 completed_tasks_file = open("completed.txt", "r")
 completed_tasks = [i for i in completed_tasks_file.readlines() if i]
-print(all_tasks)
 
 
 def main():
