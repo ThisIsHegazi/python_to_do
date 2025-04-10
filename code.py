@@ -19,6 +19,7 @@ def main():
         completed_tasks_file.writelines(completed_tasks)
 
     all_tasks_file.close()
+    completed_tasks_file.close()
 
 
 def start_app():
@@ -34,23 +35,18 @@ def start_app():
         "Enter choice number (only numbers allowed)",
         "Please enter valid choice number.",
     )
-    if choice == 1:
-        add_task()
-    elif choice == 2:
-        if all_tasks:
-            mark_completed()
-        else:
-            show_tasks()
-            return 1
-    elif choice == 3:
-        if all_tasks:
-            delete_task()
-        else:
-            show_tasks()
-    elif choice == 4:
-        show_tasks()
-    else:
-        quit_app()
+    actions = {
+        1: add_task,
+        2: mark_completed if all_tasks else show_tasks,
+        3: delete_task if all_tasks else show_tasks,
+        4: show_tasks,
+        5: quit_app,
+    }
+
+    action = actions.get(choice)
+    action()
+
+    if choice == 5:
         return 0
     return 1
 
